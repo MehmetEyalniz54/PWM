@@ -1,0 +1,35 @@
+#include <aduc841.h>
+	
+	katsayi_0L equ 20h
+	katsayi_0H equ 21h
+	katsayi_1L equ 22h
+	katsayi_1H equ 23h
+	
+	CSEG
+	
+	ORG 00h
+	SJMP MAIN
+	
+MAIN:
+	MOV SP ,#070H
+	MOV PWMCON,#00010011B
+	MOV katsayi_0L,#00H
+	MOV katsayi_0H,#36H
+	MOV katsayi_1L,#00H
+	MOV katsayi_1H,#0D8H
+	
+	acall pwm_cikis_ver
+	
+	bekle:
+		sjmp bekle
+		
+	pwm_cikis_ver:
+		mov cfg841,#00H
+		
+		mov pwm0L,katsayi_0L
+		mov pwm1L,katsayi_1L
+		mov pwm0H,katsayi_0H
+		mov pwm1H,katsayi_1H
+	
+    RET
+    END
